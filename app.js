@@ -6,7 +6,8 @@ const server = require('http').Server(app);
 //Socket.io has to use the http server
 const io = require('socket.io')(server);
 io.on("connection", (socket) => {
-  console.log("🔌 New user connected! 🔌");
+  // This file gets read on every new socket connection
+  require('./sockets/chat.js')(io, socket);
 });
 
 //Express View Engine for Handlebars
