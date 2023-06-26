@@ -1,4 +1,4 @@
-module.exports = (io, socket, onlineUsers) => {
+module.exports = (io, socket, onlineUsers, channels) => {
   // listen for "new user" socket emits
   socket.on('new user', (username) => {
     // save the username as key to access the user's socket id
@@ -30,5 +30,19 @@ module.exports = (io, socket, onlineUsers) => {
 
   socket.on('new channel', (newChannel) => {
     console.log(newChannel);
+  });
+
+  socket.on('new channel', (newChannel) => {
+    //save the channel to our channels object. The array will hold the messages.
+    channels[newChannel] = [];
+    //have the socket join the new channel room
+    socket.join(newChannel);
+    //inform all clients of the new channel
+    io.emit('new channel', newChannel);
+    //emit to the client that made the new channel, to change their channel to the one they made.
+    socket.emit('user changed channel', {
+      channel: newChannel,
+      messages: channels[newChannel]
+    });
   });
 };
