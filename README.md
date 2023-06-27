@@ -2,6 +2,9 @@
 
 This repository contains the code for a live messaging application built using Socket.io. 
 
+![Screen Shot 2023-06-27 at 11 00 40 AM](https://github.com/paul-fletes/ACS-BEW-2.1-Make-Chat-Assignment/assets/112000597/51bec19c-1125-4cdb-879a-f0b6f7de6743)
+
+
 ## Getting Started
 
 To run the application locally follow these steps:
